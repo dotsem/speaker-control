@@ -1,4 +1,4 @@
-use super::super::serial_port_mananger::SerialPortManager;
+use super::super::serial_port_manager::SerialPortManager;
 use std::sync::Arc;
 
 pub struct Instruction {

@@ -1,6 +1,6 @@
 use std::sync::Arc;
 use super::instruction::Instruction;
-use super::super::serial_port_mananger::SerialPortManager;
+use super::super::serial_port_manager::SerialPortManager;
 
 
 pub struct BoolInstruction {
