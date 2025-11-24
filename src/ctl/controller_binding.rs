@@ -1,6 +1,6 @@
 use std::sync::{Arc, LazyLock};
 use super::serial_port_mananger::SerialPortManager;
-use super::instruction::{IntInstruction, BoolInstruction, StringInstruction};
+use super::instructions::{bool_instruction::BoolInstruction, int_instruction::IntInstruction, string_instruction::StringInstruction};
 
 pub struct ControllerBinding {
     pub standby: BoolInstruction,
