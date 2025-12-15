@@ -1,17 +1,136 @@
-import { Button, VerticalBox } from "std-widgets.slint";
+import { Button, VerticalBox, HorizontalBox, GridBox } from "std-widgets.slint";
 
 export component AppWindow inherits Window {
-    in-out property <int> counter: 42;
-    callback request-increase-value();
+    width: 200px;
+    height: 400px;
+
+    callback toggle-standby();
+    in property <bool> standby;
+
+    callback inc-volume();
+    callback dec-volume();
+    callback mute-volume();
+    in property <int> volume;
+
+    callback inc-bass();
+    callback dec-bass();
+    in property <int> bass;
+
+    callback inc-treble();
+    callback dec-treble();
+    in property <int> treble;
+
     VerticalBox {
-        Text {
-            text: "Counter: \{root.counter}";
+        HorizontalBox {
+            Button {
+                text: "Standby";
+                clicked => {
+                    root.toggle-standby()
+                }
+            }
+
+            Rectangle {
+                background: root.standby ? Colors.red : Colors.green;
+            }
         }
 
-        Button {
-            text: "Increase value";
-            clicked => {
-                root.request-increase-value();
+        Rectangle {
+            height: 50px;
+        }
+
+        GridLayout {
+            Row {
+
+                Text {
+                    horizontal-alignment: center;
+                    text: "Volume";
+                }
+
+                Text {
+                    horizontal-alignment: center;
+                    text: "Bass";
+                }
+
+                Text {
+                    horizontal-alignment: center;
+                    text: "Treble";
+                }
+            }
+
+            Row {
+                Text {
+                    horizontal-alignment: center;
+                    text: root.volume;
+                }
+
+                Text {
+                    horizontal-alignment: center;
+                    text: root.bass;
+                }
+
+                Text {
+                    horizontal-alignment: center;
+                    text: root.treble;
+                }
+            }
+        }
+
+        HorizontalBox {
+            padding: 0;
+            Button {
+                text: "^\nvol";
+                clicked => {
+                    root.inc-volume()
+                }
+            }
+
+            Button {
+                text: "V\nVol";
+                clicked => {
+                    root.dec-volume()
+                }
+            }
+
+            Button {
+                text: "Mute";
+                clicked => {
+                    root.mute-volume()
+                }
+            }
+        }
+
+        GridLayout {
+            spacing: 8px;
+            Row {
+                Button {
+                    text: "Bass +";
+                    clicked => {
+                        root.inc-bass()
+                    }
+                }
+
+                Button {
+                    text: "Treble +";
+                    clicked => {
+                        root.inc-treble()
+                    }
+                }
+            }
+
+            Row {
+                Button {
+                    text: "Bass -";
+                    clicked => {
+                        root.dec-bass()
+                    }
+                }
+
+                Button {
+                    text: "Treble -";
+                    clicked => {
+                        root.dec-treble()
+                    }
+                }
             }
         }
     }
